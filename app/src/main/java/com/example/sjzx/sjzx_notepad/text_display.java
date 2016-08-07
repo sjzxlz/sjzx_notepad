@@ -28,6 +28,7 @@ public class text_display  extends AppCompatActivity{
         notesDB = new NotesDB(this);
         dbReader = notesDB.getReadableDatabase();
 
+
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -37,12 +38,13 @@ public class text_display  extends AppCompatActivity{
                         cursor.getInt(cursor.getColumnIndex(NotesDB.ID)));
                 i.putExtra(NotesDB.CONTENT, cursor.getString(cursor
                         .getColumnIndex(NotesDB.CONTENT)));
+
+//                i.putExtra(NotesDB.IMG,
+//                        cursor.getString(cursor.getColumnIndex(NotesDB.IMG)));
+//                i.putExtra(NotesDB.VIDEO,
+//                        cursor.getString(cursor.getColumnIndex(NotesDB.VIDEO)));
                 i.putExtra(NotesDB.TIME,
                         cursor.getString(cursor.getColumnIndex(NotesDB.TIME)));
-                i.putExtra(NotesDB.IMG,
-                        cursor.getString(cursor.getColumnIndex(NotesDB.IMG)));
-                i.putExtra(NotesDB.VIDEO,
-                        cursor.getString(cursor.getColumnIndex(NotesDB.VIDEO)));
 
                 startActivity(i);
             }
@@ -50,8 +52,8 @@ public class text_display  extends AppCompatActivity{
     }
 
     public void  selectDB(){
-        Cursor cursor = dbReader.query(NotesDB.TABLE_NAME,null,null,null,null,null,null);
-        adapter = new MyAdapter(this,cursor);
+         cursor = dbReader.query(NotesDB.TABLE_NAME,null,null,null,null,null,null);
+          adapter = new MyAdapter(this,cursor);
         lv.setAdapter(adapter);
     }
     @Override
