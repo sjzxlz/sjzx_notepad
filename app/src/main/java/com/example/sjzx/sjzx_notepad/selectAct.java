@@ -9,6 +9,7 @@ import android.widget.TextView;
 public class selectAct extends AppCompatActivity implements View.OnClickListener{
     private Button s_delete,s_back;
     private TextView s_tv;
+    private TextView s_title_tv;
     private NotesDB notesDB;
     private SQLiteDatabase dbWriter;
     @Override
@@ -19,11 +20,13 @@ public class selectAct extends AppCompatActivity implements View.OnClickListener
         s_delete = (Button)findViewById(R.id.s_delete);
         s_back = (Button)findViewById(R.id.s_back);
         s_tv = (TextView)findViewById(R.id.s_tv);
+        s_title_tv = (TextView)findViewById(R.id.s_title_tv);
         notesDB = new NotesDB(this);
         dbWriter = notesDB.getWritableDatabase();
         s_back.setOnClickListener(this);
         s_delete.setOnClickListener(this);
 
+        s_title_tv.setText(getIntent().getStringExtra(NotesDB.TITLE));
         s_tv.setText(getIntent().getStringExtra(NotesDB.CONTENT));
 
     }

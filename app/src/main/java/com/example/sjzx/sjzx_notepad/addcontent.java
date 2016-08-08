@@ -14,6 +14,7 @@ public class addcontent extends AppCompatActivity  {
 
     private Button savebtn,cancelbtn;
     private EditText ettext;
+    private EditText title_text;
     private NotesDB notesDB;
     private SQLiteDatabase dbWriter;
 
@@ -30,6 +31,7 @@ public class addcontent extends AppCompatActivity  {
         savebtn = (Button)findViewById(R.id.save);
         cancelbtn = (Button)findViewById(R.id.cancel);
         ettext = (EditText)findViewById(R.id.ettext) ;
+        title_text = (EditText)findViewById(R.id.title_text);
 
 
         savebtn.setOnClickListener(new View.OnClickListener(){
@@ -52,6 +54,7 @@ public class addcontent extends AppCompatActivity  {
 
     public void addDB() {
         ContentValues cv = new ContentValues();
+        cv.put(NotesDB.TITLE, title_text.getText().toString());
         cv.put(NotesDB.CONTENT, ettext.getText().toString());
         cv.put(NotesDB.TIME, getTime());
         dbWriter.insert(NotesDB.TABLE_NAME, null, cv);

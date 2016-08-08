@@ -37,11 +37,16 @@ public class MyAdapter extends BaseAdapter {
     public View getView(int position, View view, ViewGroup viewGroup) {
         LayoutInflater inflater = LayoutInflater.from(context);
             layout = (LinearLayout) inflater.inflate(R.layout.cell,null);
+
+        TextView titletv = (TextView)layout.findViewById(R.id.list_title);
         TextView contenttv =(TextView)layout.findViewById(R.id.list_content);
         TextView timetv =(TextView)layout.findViewById(R.id.list_time);
         cursor.moveToPosition(position);
+        String title = cursor.getString(cursor.getColumnIndex("title"));
         String content = cursor.getString(cursor.getColumnIndex("content"));
         String time = cursor.getString(cursor.getColumnIndex("time"));
+
+        titletv.setText(title);
         contenttv.setText(content);
         timetv.setText(time);
         return layout;

@@ -38,6 +38,8 @@ public class text_display  extends AppCompatActivity{
                         cursor.getInt(cursor.getColumnIndex(NotesDB.ID)));
                 i.putExtra(NotesDB.CONTENT, cursor.getString(cursor
                         .getColumnIndex(NotesDB.CONTENT)));
+                i.putExtra(NotesDB.TITLE, cursor.getString(cursor
+                        .getColumnIndex(NotesDB.TITLE)));
 
 //                i.putExtra(NotesDB.IMG,
 //                        cursor.getString(cursor.getColumnIndex(NotesDB.IMG)));

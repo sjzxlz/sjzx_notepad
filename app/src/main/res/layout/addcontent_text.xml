@@ -29,7 +29,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/bettext"
+        android:id="@+id/title_text"
         android:hint="标题"
         android:layout_weight="1"
         android:gravity="top"/>
