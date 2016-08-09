@@ -13,6 +13,7 @@ public class selectAct extends AppCompatActivity implements View.OnClickListener
     private Button s_delete, s_back;
     private TextView s_tv;
     private TextView s_title_tv;
+    private TextView s_time_tv;
     private NotesDB notesDB;
     private SQLiteDatabase dbWriter;
 
@@ -25,6 +26,7 @@ public class selectAct extends AppCompatActivity implements View.OnClickListener
         s_back = (Button) findViewById(R.id.s_back);
         s_tv = (TextView) findViewById(R.id.s_tv);
         s_title_tv = (TextView) findViewById(R.id.s_title_tv);
+        s_time_tv = (TextView)findViewById(R.id.s_time_tv);
         notesDB = new NotesDB(this);
         dbWriter = notesDB.getWritableDatabase();
         s_back.setOnClickListener(this);
@@ -32,6 +34,7 @@ public class selectAct extends AppCompatActivity implements View.OnClickListener
 
         s_title_tv.setText(getIntent().getStringExtra(NotesDB.TITLE));
         s_tv.setText(getIntent().getStringExtra(NotesDB.CONTENT));
+        s_time_tv.setText(getIntent().getStringExtra(NotesDB.TIME));
     }
     @Override
     public void onClick(View v) {
