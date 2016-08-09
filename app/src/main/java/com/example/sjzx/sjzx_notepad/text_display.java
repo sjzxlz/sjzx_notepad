@@ -40,14 +40,12 @@ public class text_display  extends AppCompatActivity{
                         .getColumnIndex(NotesDB.CONTENT)));
                 i.putExtra(NotesDB.TITLE, cursor.getString(cursor
                         .getColumnIndex(NotesDB.TITLE)));
-
 //                i.putExtra(NotesDB.IMG,
 //                        cursor.getString(cursor.getColumnIndex(NotesDB.IMG)));
 //                i.putExtra(NotesDB.VIDEO,
 //                        cursor.getString(cursor.getColumnIndex(NotesDB.VIDEO)));
                 i.putExtra(NotesDB.TIME,
                         cursor.getString(cursor.getColumnIndex(NotesDB.TIME)));
-
                 startActivity(i);
             }
         });
