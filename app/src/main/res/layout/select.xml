@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/myScrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="vertical"
+    android:fadingEdge="vertical">
+
+<LinearLayout
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <LinearLayout
         style="@style/wrap_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1">
+        android:layout_weight="2">
+
     <TextView
         style="@style/usertext"
         android:layout_width="wrap_content"
@@ -25,12 +35,15 @@
         android:layout_weight="2" />
     </LinearLayout>
 
+
+
     <LinearLayout
         style="@style/wrap_layout"
         android:layout_weight="5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    <TextView
+
+        <TextView
         style="@style/usertext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -38,7 +51,9 @@
         android:gravity="center_horizontal"
         android:layout_weight="1"
         android:textStyle="bold"/>
-    <TextView
+
+
+        <TextView
         style="@style/usertext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -46,12 +61,13 @@
         android:layout_weight="4"/>
     </LinearLayout>
 
+
     <LinearLayout
         style="@style/wrap_layout"
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    <TextView
+         <TextView
         style="@style/usertext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -72,7 +88,7 @@
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    <TextView
+        <TextView
         style="@style/usertext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -86,7 +102,7 @@
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    <TextView
+        <TextView
         style="@style/usertext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -95,12 +111,12 @@
         android:textStyle="bold"/>
     </LinearLayout>
 
-<LinearLayout
+    <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
-    <Button
+        <Button
         style="@style/usertext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -109,7 +125,7 @@
         android:text="删除"
         android:textStyle="bold"/>
 
-    <Button
+     <Button
         style="@style/usertext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -118,6 +134,8 @@
         android:text="返回"
         android:textStyle="bold"/>
 
-</LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>
+
+</ScrollView>

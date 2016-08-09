@@ -17,7 +17,6 @@
     <style name="usertext">
         <item name="android:textSize">16dp</item>
         <item name="android:textColor">@color/text_clo</item>
-        <item name="android:layout_weight">1</item>
     </style>
 
     <style name="wrap_layout">
