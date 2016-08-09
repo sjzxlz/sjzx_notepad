@@ -21,15 +21,21 @@
     </style>
 
     <style name="wrap_layout">
-        3         <item name="android:orientation">vertical</item>
-        <!--4         <item name="android:layout_height">wrap_content</item>-->
-        <!--5         <item name="android:layout_width">match_parent</item>-->
-        6         <item name="android:layout_marginLeft">8dp</item>
-        7         <item name="android:layout_marginRight">8dp</item>
-        8         <item name="android:layout_marginTop">8dp</item>
-        9         <item name="android:padding">1px</item>
-        <!--10         <item name="android:background">@drawable/bg_layout_shape</item>-->
-        11
-        12     </style>
-
+                 <item name="android:orientation">vertical</item>
+                 <item name="android:layout_marginLeft">8dp</item>
+                 <item name="android:layout_marginRight">8dp</item>
+                 <item name="android:layout_marginTop">8dp</item>
+                 <item name="android:padding">1px</item>
+    </style>
+    <style name="list_layout">
+                 <item name="android:layout_marginLeft">8dp</item>
+                 <item name="android:layout_marginRight">8dp</item>
+                 <item name="android:layout_marginTop">8dp</item>
+                 <item name="android:padding">1px</item>
+             </style>
+    <style name="listtext">
+        <item name="android:textSize">20dp</item>
+        <item name="android:textColor">@color/text_clo</item>
+        <item name="android:layout_weight">1</item>
+    </style>
 </resources>
