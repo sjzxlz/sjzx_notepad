@@ -3,10 +3,15 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class text_display  extends AppCompatActivity{
     private ListView lv;
@@ -20,8 +25,46 @@ public class text_display  extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.text_file_display);
+        //actionbar
+        ActionBar actionBar = this.getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.show();
+        //结束
         initView();
     }
+    //Actionbar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.note_list, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case android.R.id.home:
+                finish();
+                break;
+
+            case R.id.action_delete:
+                Toast.makeText(this, "删除", Toast.LENGTH_SHORT)
+                        .show();
+                finish();
+
+                break;
+            case R.id.action_share:
+                Toast.makeText(this, "上传", Toast.LENGTH_SHORT)
+                        .show();
+                finish();
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    //结束
 
     public void initView(){
         lv =(ListView)findViewById(R.id.list_text);

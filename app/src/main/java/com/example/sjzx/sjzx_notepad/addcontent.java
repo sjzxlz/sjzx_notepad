@@ -29,6 +29,7 @@ public class addcontent extends AppCompatActivity  {
 
         //actionbar
         ActionBar actionBar = this.getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.show();
         //结束
 
@@ -36,7 +37,6 @@ public class addcontent extends AppCompatActivity  {
         dbWriter = notesDB.getWritableDatabase();
         initView();
     }
-
 
     public void initView() {
         ettext = (EditText) findViewById(R.id.ettext);
@@ -47,19 +47,18 @@ public class addcontent extends AppCompatActivity  {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.note_edit, menu);
+        inflater.inflate(R.menu.note_save, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_edit:
-                Toast.makeText(this, "编辑", Toast.LENGTH_SHORT)
-                        .show();
-                        finish();
 
-                break;
+            case android.R.id.home:
+                    finish();
+                   break;
+
             case R.id.action_save:
                 Toast.makeText(this, "保存", Toast.LENGTH_SHORT)
                         .show();
@@ -72,8 +71,6 @@ public class addcontent extends AppCompatActivity  {
         return super.onOptionsItemSelected(item);
     }
     //结束
-
-
 
     public void addDB() {
         ContentValues cv = new ContentValues();

@@ -19,6 +19,8 @@ public class selectAct extends AppCompatActivity  {
     private TextView s_time_tv;
     private NotesDB notesDB;
     private SQLiteDatabase dbWriter;
+    String title ="";
+    String de_content = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,7 @@ public class selectAct extends AppCompatActivity  {
 
         //actionbar
         ActionBar actionBar = this.getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.show();
         //over
 
@@ -53,6 +56,10 @@ public class selectAct extends AppCompatActivity  {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+
+            case android.R.id.home:
+                finish();
+               break;
             case R.id.action_delete:
                 Dialog dialog = new AlertDialog.Builder(selectAct.this)
                         .setTitle("删除提示框")
@@ -70,10 +77,14 @@ public class selectAct extends AppCompatActivity  {
                             }
                         }).show();
                         break;
+
             case R.id.action_edit:
                 Toast.makeText(this, "编辑", Toast.LENGTH_SHORT)
                         .show();
-                finish();
+                Bundle bundle = new Bundle();
+                bundle.putString("title",title);
+                bundle.putString("de_content",de_content);
+
                 break;
             default:
                 break;
