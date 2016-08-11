@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">信息记录</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_save">Save</string>
+    <string name="action_share">Share</string>
 </resources>

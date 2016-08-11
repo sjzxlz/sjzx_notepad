@@ -12,7 +12,7 @@ import java.util.Date;
 
 public class addcontent extends AppCompatActivity  {
 
-    private Button savebtn,cancelbtn;
+    private Button savebtn, cancelbtn;
     private EditText ettext;
     private EditText title_text;
     private NotesDB notesDB;
@@ -27,11 +27,12 @@ public class addcontent extends AppCompatActivity  {
         dbWriter = notesDB.getWritableDatabase();
         initView();
     }
-    public void initView(){
+
+    public void initView() {
         savebtn = (Button)findViewById(R.id.save);
         cancelbtn = (Button)findViewById(R.id.cancel);
-        ettext = (EditText)findViewById(R.id.ettext) ;
-        title_text = (EditText)findViewById(R.id.title_text);
+        ettext = (EditText) findViewById(R.id.ettext);
+        title_text = (EditText) findViewById(R.id.title_text);
 
 
         savebtn.setOnClickListener(new View.OnClickListener(){
@@ -51,6 +52,34 @@ public class addcontent extends AppCompatActivity  {
         });
 
     }
+
+//    public boolean onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+//        super.onCreateOptionsMenu(menu);
+//        inflater.inflate(R.menu.note_edit, menu);
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        super.onOptionsItemSelected(item);
+//        switch (item.getItemId()) {
+//            case R.id.action_save:
+//                addDB();
+//                finish();
+//                break;
+//
+//            case R.id.action_share:
+//                finish();
+//                break;
+//
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+//        return true;
+//    }
+
+
+
 
     public void addDB() {
         ContentValues cv = new ContentValues();

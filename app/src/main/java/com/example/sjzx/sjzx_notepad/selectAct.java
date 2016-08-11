@@ -21,7 +21,6 @@ public class selectAct extends AppCompatActivity implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.select);
-
         s_delete = (Button) findViewById(R.id.s_delete);
         s_back = (Button) findViewById(R.id.s_back);
         s_tv = (TextView) findViewById(R.id.s_tv);
@@ -62,4 +61,6 @@ public class selectAct extends AppCompatActivity implements View.OnClickListener
     public void deleteDate(){
         dbWriter.delete(NotesDB.TABLE_NAME,"_id=" + getIntent().getIntExtra(NotesDB.ID,0),null);
     }
+
+
 }
