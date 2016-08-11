@@ -5,28 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-
-
-        <Button
-            android:id="@+id/cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="取消" />
-
-        <Button
-            android:id="@+id/save"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="保存" />
-
-    </LinearLayout>
-
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -48,7 +26,5 @@
         android:layout_height="wrap_content"
         android:text="当前坐标"
         android:layout_weight="1"/>
-
-
 
 </LinearLayout>

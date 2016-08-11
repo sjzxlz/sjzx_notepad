@@ -1,9 +1,14 @@
 package com.example.sjzx.sjzx_notepad;
+import android.support.v7.app.ActionBar;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -16,8 +21,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
-
     }
+
+
     public void initView(){
         textbtn = (Button)findViewById(R.id.text);
         imgbtn = (Button)findViewById(R.id.img);

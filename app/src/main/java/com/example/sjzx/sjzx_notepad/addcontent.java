@@ -2,17 +2,20 @@ package com.example.sjzx.sjzx_notepad;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
 public class addcontent extends AppCompatActivity  {
 
-    private Button savebtn, cancelbtn;
     private EditText ettext;
     private EditText title_text;
     private NotesDB notesDB;
@@ -23,61 +26,52 @@ public class addcontent extends AppCompatActivity  {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.addcontent_text);
+
+        //actionbar
+        ActionBar actionBar = this.getSupportActionBar();
+        actionBar.show();
+        //结束
+
         notesDB = new NotesDB(this);
         dbWriter = notesDB.getWritableDatabase();
         initView();
     }
 
+
     public void initView() {
-        savebtn = (Button)findViewById(R.id.save);
-        cancelbtn = (Button)findViewById(R.id.cancel);
         ettext = (EditText) findViewById(R.id.ettext);
         title_text = (EditText) findViewById(R.id.title_text);
-
-
-        savebtn.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View v) {
-                addDB();
-                finish();
-            }
-        });
-        cancelbtn.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
     }
 
-//    public boolean onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-//        super.onCreateOptionsMenu(menu);
-//        inflater.inflate(R.menu.note_edit, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        super.onOptionsItemSelected(item);
-//        switch (item.getItemId()) {
-//            case R.id.action_save:
-//                addDB();
-//                finish();
-//                break;
-//
-//            case R.id.action_share:
-//                finish();
-//                break;
-//
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//        return true;
-//    }
+        //Actionbar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.note_edit, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_edit:
+                Toast.makeText(this, "编辑", Toast.LENGTH_SHORT)
+                        .show();
+                        finish();
+
+                break;
+            case R.id.action_save:
+                Toast.makeText(this, "保存", Toast.LENGTH_SHORT)
+                        .show();
+                        addDB();
+                        finish();
+                        break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    //结束
 
 
 
@@ -94,12 +88,4 @@ public class addcontent extends AppCompatActivity  {
         String str = format.format(curDate);
         return str;
     }
-
-
-
-
-
-
-
-
 }

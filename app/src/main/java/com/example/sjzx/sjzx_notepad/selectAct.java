@@ -28,6 +28,7 @@ public class selectAct extends AppCompatActivity implements View.OnClickListener
         s_time_tv = (TextView)findViewById(R.id.s_time_tv);
         notesDB = new NotesDB(this);
         dbWriter = notesDB.getWritableDatabase();
+
         s_back.setOnClickListener(this);
         s_delete.setOnClickListener(this);
 
@@ -35,6 +36,7 @@ public class selectAct extends AppCompatActivity implements View.OnClickListener
         s_tv.setText(getIntent().getStringExtra(NotesDB.CONTENT));
         s_time_tv.setText(getIntent().getStringExtra(NotesDB.TIME));
     }
+
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.s_delete) {
@@ -58,9 +60,9 @@ public class selectAct extends AppCompatActivity implements View.OnClickListener
                 finish();
         }
     }
+
     public void deleteDate(){
         dbWriter.delete(NotesDB.TABLE_NAME,"_id=" + getIntent().getIntExtra(NotesDB.ID,0),null);
     }
-
 
 }
