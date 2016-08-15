@@ -1,6 +1,7 @@
 package com.example.sjzx.sjzx_notepad;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -19,8 +20,9 @@ public class selectAct extends AppCompatActivity  {
     private TextView s_time_tv;
     private NotesDB notesDB;
     private SQLiteDatabase dbWriter;
-    String title ="";
-    String de_content = "";
+    String title;
+    String de_content;
+    Long rowid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,11 @@ public class selectAct extends AppCompatActivity  {
         s_title_tv.setText(getIntent().getStringExtra(NotesDB.TITLE));
         s_tv.setText(getIntent().getStringExtra(NotesDB.CONTENT));
         s_time_tv.setText(getIntent().getStringExtra(NotesDB.TIME));
+
+        title = getIntent().getStringExtra(NotesDB.TITLE);
+        de_content =getIntent().getStringExtra(NotesDB.CONTENT);
+        rowid = getIntent().getLongExtra(NotesDB.ID,1);
+
     }
 
     //Actionbar
@@ -60,6 +67,7 @@ public class selectAct extends AppCompatActivity  {
             case android.R.id.home:
                 finish();
                break;
+
             case R.id.action_delete:
                 Dialog dialog = new AlertDialog.Builder(selectAct.this)
                         .setTitle("删除提示框")
@@ -76,16 +84,22 @@ public class selectAct extends AppCompatActivity  {
                                 finish();
                             }
                         }).show();
-                        break;
-
+                break;
             case R.id.action_edit:
                 Toast.makeText(this, "编辑", Toast.LENGTH_SHORT)
                         .show();
-                Bundle bundle = new Bundle();
-                bundle.putString("title",title);
-                bundle.putString("de_content",de_content);
 
-                break;
+                    Bundle bundle = new Bundle();
+                    bundle.putString("title", title);
+                    bundle.putString("de_content", de_content);
+                    bundle.putLong("rowid",rowid);
+
+                    Intent intent = new Intent();
+                    intent.setClass(selectAct.this, note_edit.class);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                    break;
+
             default:
                 break;
         }

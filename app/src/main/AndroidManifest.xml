@@ -28,6 +28,7 @@
         <activity android:name=".text_display"></activity>
 
         <activity android:name=".selectAct"></activity>
+        <activity android:name=".note_edit"></activity>
     </application>
 
 </manifest>

@@ -1,5 +1,6 @@
 package com.example.sjzx.sjzx_notepad;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -21,6 +22,8 @@ public class addcontent extends AppCompatActivity  {
     private NotesDB notesDB;
     private SQLiteDatabase dbWriter;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -41,9 +44,10 @@ public class addcontent extends AppCompatActivity  {
     public void initView() {
         ettext = (EditText) findViewById(R.id.ettext);
         title_text = (EditText) findViewById(R.id.title_text);
+
     }
 
-        //Actionbar
+    //Actionbar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -72,6 +76,7 @@ public class addcontent extends AppCompatActivity  {
     }
     //结束
 
+
     public void addDB() {
         ContentValues cv = new ContentValues();
         cv.put(NotesDB.TITLE, title_text.getText().toString());
@@ -79,7 +84,7 @@ public class addcontent extends AppCompatActivity  {
         cv.put(NotesDB.TIME, getTime());
         dbWriter.insert(NotesDB.TABLE_NAME, null, cv);
     }
-    private String getTime() {
+    public String getTime() {
         SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
         Date curDate = new Date();
         String str = format.format(curDate);

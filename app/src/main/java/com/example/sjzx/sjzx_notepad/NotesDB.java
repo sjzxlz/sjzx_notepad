@@ -1,8 +1,13 @@
 package com.example.sjzx.sjzx_notepad;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class NotesDB extends SQLiteOpenHelper {
 
@@ -13,6 +18,7 @@ public class NotesDB extends SQLiteOpenHelper {
 //    public static final String VIDEO = "video";
     public static final String ID = "_id";
     public static final String TIME = "time";
+    private SQLiteDatabase dbWriter;
 
     public NotesDB(Context context) {
         super(context, "notes", null, 1);
@@ -34,4 +40,21 @@ public class NotesDB extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
 
     }
+
+    public void updateNotes(Long rowid,String title,String de_content){
+        ContentValues cv = new ContentValues();
+
+        cv.put(NotesDB.TITLE,title);
+        cv.put(NotesDB.CONTENT,de_content);
+        cv.put(NotesDB.TIME, getTime());
+
+        dbWriter.update(NotesDB.TABLE_NAME,cv,ID+ " ="+rowid,null);
+    }
+    private String getTime() {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
+        Date curDate = new Date();
+        String str = format.format(curDate);
+        return str;
+    }
+
 }
