@@ -23,7 +23,7 @@ public class note_edit extends AppCompatActivity {
     private SQLiteDatabase dbWriter;
     private EditText ee_text;
     private EditText ee_title_text;
-    public Long rowid;
+    public int rowid;
     String title,de_content;
 
 
@@ -50,7 +50,7 @@ public class note_edit extends AppCompatActivity {
 
             title = bundle.getString("title");
             de_content = bundle.getString("de_content");
-             rowid = bundle.getLong("rowid");
+             rowid = bundle.getInt("rowid",0);
 
             ee_title_text.setText(title);
              ee_text.setText(de_content);
@@ -77,6 +77,7 @@ public class note_edit extends AppCompatActivity {
                 Toast.makeText(this, "保存",Toast.LENGTH_SHORT)
                         .show();
                        save();
+                finish();
                 break;
 
             default:
@@ -96,9 +97,8 @@ public class note_edit extends AppCompatActivity {
     private void save(){
          title=ee_title_text.getText().toString();
         de_content=ee_text.getText().toString();
-        if (rowid!=null){
+
             notesDB.updateNotes(rowid,title,de_content);
-        }
 
         Intent mintent =new Intent();
         setResult(RESULT_OK,mintent);

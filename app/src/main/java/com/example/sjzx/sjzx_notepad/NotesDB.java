@@ -18,7 +18,7 @@ public class NotesDB extends SQLiteOpenHelper {
 //    public static final String VIDEO = "video";
     public static final String ID = "_id";
     public static final String TIME = "time";
-    private SQLiteDatabase dbWriter;
+
 
     public NotesDB(Context context) {
         super(context, "notes", null, 1);
@@ -41,14 +41,15 @@ public class NotesDB extends SQLiteOpenHelper {
 
     }
 
-    public void updateNotes(Long rowid,String title,String de_content){
+    public void updateNotes(int rowid,String title,String de_content){
+        SQLiteDatabase db =getWritableDatabase();
         ContentValues cv = new ContentValues();
 
         cv.put(NotesDB.TITLE,title);
         cv.put(NotesDB.CONTENT,de_content);
         cv.put(NotesDB.TIME, getTime());
 
-        dbWriter.update(NotesDB.TABLE_NAME,cv,ID+ " ="+rowid,null);
+       db.update(NotesDB.TABLE_NAME,cv,ID+"="+rowid,null);
     }
     private String getTime() {
         SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");

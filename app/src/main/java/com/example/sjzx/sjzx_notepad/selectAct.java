@@ -22,7 +22,7 @@ public class selectAct extends AppCompatActivity  {
     private SQLiteDatabase dbWriter;
     String title;
     String de_content;
-    Long rowid;
+    int rowid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +48,7 @@ public class selectAct extends AppCompatActivity  {
 
         title = getIntent().getStringExtra(NotesDB.TITLE);
         de_content =getIntent().getStringExtra(NotesDB.CONTENT);
-        rowid = getIntent().getLongExtra(NotesDB.ID,1);
+        rowid = getIntent().getIntExtra(NotesDB.ID,0);
 
     }
 
@@ -92,7 +92,7 @@ public class selectAct extends AppCompatActivity  {
                     Bundle bundle = new Bundle();
                     bundle.putString("title", title);
                     bundle.putString("de_content", de_content);
-                    bundle.putLong("rowid",rowid);
+                    bundle.putInt("rowid",rowid);
 
                     Intent intent = new Intent();
                     intent.setClass(selectAct.this, note_edit.class);
