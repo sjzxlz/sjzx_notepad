@@ -92,11 +92,6 @@ public class text_display  extends AppCompatActivity{
                 startActivity(i);
             }
         });
-
-
-
-
-
     }
 
     public void  selectDB(){

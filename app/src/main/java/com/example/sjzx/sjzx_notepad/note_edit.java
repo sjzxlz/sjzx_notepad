@@ -1,11 +1,10 @@
 package com.example.sjzx.sjzx_notepad;
 
-import android.content.ContentValues;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,8 +18,6 @@ import java.util.Date;
 public class note_edit extends AppCompatActivity {
 
     private NotesDB notesDB;
-    private MyAdapter adapter;
-    private SQLiteDatabase dbWriter;
     private EditText ee_text;
     private EditText ee_title_text;
     public int rowid;
@@ -46,8 +43,8 @@ public class note_edit extends AppCompatActivity {
 
         ee_text = (EditText) findViewById(R.id.ee_text);
         ee_title_text = (EditText) findViewById(R.id.ee_title_text);
-        Bundle bundle = getIntent().getExtras();
 
+        Bundle bundle = getIntent().getExtras();
             title = bundle.getString("title");
             de_content = bundle.getString("de_content");
              rowid = bundle.getInt("rowid",0);
@@ -77,7 +74,6 @@ public class note_edit extends AppCompatActivity {
                 Toast.makeText(this, "保存",Toast.LENGTH_SHORT)
                         .show();
                        save();
-                finish();
                 break;
 
             default:
@@ -97,11 +93,16 @@ public class note_edit extends AppCompatActivity {
     private void save(){
          title=ee_title_text.getText().toString();
         de_content=ee_text.getText().toString();
+        notesDB.updateNotes(rowid,title,de_content);
 
-            notesDB.updateNotes(rowid,title,de_content);
 
-        Intent mintent =new Intent();
-        setResult(RESULT_OK,mintent);
+        Bundle bundle1=new Bundle();
+        bundle1.putString("title",title);
+        bundle1.putString("de_content",de_content);
+
+        Intent intent1 =new Intent();
+        intent1.putExtras(bundle1);
+        setResult(0,intent1);
         finish();
     }
 

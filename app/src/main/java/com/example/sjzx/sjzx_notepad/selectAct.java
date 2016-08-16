@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -41,7 +42,6 @@ public class selectAct extends AppCompatActivity  {
         notesDB = new NotesDB(this);
         dbWriter = notesDB.getWritableDatabase();
 
-
         s_title_tv.setText(getIntent().getStringExtra(NotesDB.TITLE));
         s_tv.setText(getIntent().getStringExtra(NotesDB.CONTENT));
         s_time_tv.setText(getIntent().getStringExtra(NotesDB.TIME));
@@ -49,8 +49,8 @@ public class selectAct extends AppCompatActivity  {
         title = getIntent().getStringExtra(NotesDB.TITLE);
         de_content =getIntent().getStringExtra(NotesDB.CONTENT);
         rowid = getIntent().getIntExtra(NotesDB.ID,0);
-
     }
+
 
     //Actionbar
     @Override
@@ -95,9 +95,9 @@ public class selectAct extends AppCompatActivity  {
                     bundle.putInt("rowid",rowid);
 
                     Intent intent = new Intent();
+                     intent.putExtras(bundle);
                     intent.setClass(selectAct.this, note_edit.class);
-                    intent.putExtras(bundle);
-                    startActivity(intent);
+                    startActivityForResult(intent,0);
                     break;
 
             default:
@@ -108,8 +108,28 @@ public class selectAct extends AppCompatActivity  {
     //over
 
 
+
     public void deleteDate(){
         dbWriter.delete(NotesDB.TABLE_NAME,"_id=" + getIntent().getIntExtra(NotesDB.ID,0),null);
+    }
+
+    protected void onActivityResult(int requestCode,int resultCode,Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+
+            if (resultCode==0) {
+                Bundle bundle = data.getExtras();
+
+                rowid =bundle.getInt("rowid",0);
+                title=bundle.getString("title");
+                de_content=bundle.getString("de_content");
+
+                Log.v("title"+"=",title);
+                Log.v("de_content"+"=",de_content);
+
+                s_title_tv.setText(title);
+                s_tv.setText(de_content);
+
+            }
     }
 
 }
