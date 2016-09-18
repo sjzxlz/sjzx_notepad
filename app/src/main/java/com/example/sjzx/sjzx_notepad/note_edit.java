@@ -100,6 +100,7 @@ public class note_edit extends AppCompatActivity {
         bundle1.putString("title",title);
         bundle1.putString("de_content",de_content);
 
+
         Intent intent1 =new Intent();
         intent1.putExtras(bundle1);
         setResult(0,intent1);

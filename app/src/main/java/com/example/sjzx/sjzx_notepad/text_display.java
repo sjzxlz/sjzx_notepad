@@ -20,6 +20,7 @@ public class text_display  extends AppCompatActivity{
     private SQLiteDatabase dbReader;
     private Cursor cursor;
     private Intent i;
+    private boolean isMulChoice; //是否多选
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +53,6 @@ public class text_display  extends AppCompatActivity{
                 Toast.makeText(this, "删除", Toast.LENGTH_SHORT)
                         .show();
                 finish();
-
                 break;
             case R.id.action_share:
                 Toast.makeText(this, "上传", Toast.LENGTH_SHORT)
@@ -70,7 +70,6 @@ public class text_display  extends AppCompatActivity{
         lv =(ListView)findViewById(R.id.list_text);
         notesDB = new NotesDB(this);
         dbReader = notesDB.getReadableDatabase();
-
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -104,4 +103,6 @@ public class text_display  extends AppCompatActivity{
         super.onResume();
         selectDB();
     }
+
+
 }

@@ -14,6 +14,9 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class selectAct extends AppCompatActivity  {
 
     private TextView s_tv;
@@ -50,7 +53,6 @@ public class selectAct extends AppCompatActivity  {
         de_content =getIntent().getStringExtra(NotesDB.CONTENT);
         rowid = getIntent().getIntExtra(NotesDB.ID,0);
     }
-
 
     //Actionbar
     @Override
@@ -117,19 +119,24 @@ public class selectAct extends AppCompatActivity  {
         super.onActivityResult(requestCode, resultCode, data);
 
             if (resultCode==0) {
+
                 Bundle bundle = data.getExtras();
 
                 rowid =bundle.getInt("rowid",0);
                 title=bundle.getString("title");
                 de_content=bundle.getString("de_content");
 
-                Log.v("title"+"=",title);
-                Log.v("de_content"+"=",de_content);
-
                 s_title_tv.setText(title);
                 s_tv.setText(de_content);
 
+                s_time_tv.setText(getTime());
             }
+    }
+    private String getTime() {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
+        Date curDate = new Date();
+        String str = format.format(curDate);
+        return str;
     }
 
 }

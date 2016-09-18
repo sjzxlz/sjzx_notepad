@@ -84,7 +84,7 @@ public class addcontent extends AppCompatActivity  {
         cv.put(NotesDB.TIME, getTime());
         dbWriter.insert(NotesDB.TABLE_NAME, null, cv);
     }
-    public String getTime() {
+    private   String getTime() {
         SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
         Date curDate = new Date();
         String str = format.format(curDate);
