@@ -22,7 +22,6 @@ public class text_display  extends AppCompatActivity  implements View.OnClickLis
     private SQLiteDatabase dbReader;
     private Cursor cursor;
     private Button selectall;
-    private Button cancel;
     private Button confirmdelete;
     private LinearLayout layout1;
 
@@ -82,7 +81,6 @@ public class text_display  extends AppCompatActivity  implements View.OnClickLis
     public void initView(){
         lv =(ListView)findViewById(R.id.list_text);
         selectall = (Button) findViewById(R.id.bt_selectall);
-        cancel = (Button) findViewById(R.id.bt_cancelselectall);
         confirmdelete = (Button) findViewById(R.id.bt_confirmdelete);
         layout1 = (LinearLayout)findViewById(R.id.linear);
 
@@ -91,7 +89,6 @@ public class text_display  extends AppCompatActivity  implements View.OnClickLis
         dbReader = notesDB.getReadableDatabase();
 
         selectall.setOnClickListener(this);
-        cancel.setOnClickListener(this);
         confirmdelete.setOnClickListener(this);
 
 
@@ -133,15 +130,6 @@ public class text_display  extends AppCompatActivity  implements View.OnClickLis
                     adapter.isSelected.put(n, true);
                 }
 
-            case R.id.bt_cancelselectall:
-
-                adapter = new MyAdapter(this,cursor);
-                lv.setAdapter(adapter);
-
-                for (int n = 0; n < cursor.getCount(); n++) {
-                    adapter.isVisiblecheck.put(n, View.VISIBLE);
-                    adapter.isSelected.put(n, false);
-                }
 
             case R.id.bt_confirmdelete:
 
@@ -152,6 +140,7 @@ public class text_display  extends AppCompatActivity  implements View.OnClickLis
                     adapter.isVisiblecheck.put(n, View.VISIBLE);
                     adapter.isSelected.put(n, true);
                 }
+
         }
     }
 
