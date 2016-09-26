@@ -97,19 +97,19 @@
                 android:textStyle="bold"/>
         </LinearLayout>
 
-        <LinearLayout
-            style="@style/wrap_layout"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                style="@style/usertext"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="地    点"
-                android:layout_weight="1"
-                android:textStyle="bold"/>
-        </LinearLayout>
+        <!--<LinearLayout-->
+            <!--style="@style/wrap_layout"-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
+            <!--<TextView-->
+                <!--style="@style/usertext"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="地    点"-->
+                <!--android:layout_weight="1"-->
+                <!--android:textStyle="bold"/>-->
+        <!--</LinearLayout>-->
 
     </LinearLayout>
 

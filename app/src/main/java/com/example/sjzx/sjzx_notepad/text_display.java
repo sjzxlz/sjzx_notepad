@@ -19,19 +19,21 @@ public class text_display  extends AppCompatActivity{
     private NotesDB notesDB;
     private SQLiteDatabase dbReader;
     private Cursor cursor;
-    private Intent i;
-    private boolean isMulChoice; //是否多选
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.text_file_display);
+
         //actionbar
         ActionBar actionBar = this.getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.show();
         //结束
         initView();
+
     }
     //Actionbar
     @Override
@@ -50,9 +52,15 @@ public class text_display  extends AppCompatActivity{
                 break;
 
             case R.id.action_delete:
-                Toast.makeText(this, "删除", Toast.LENGTH_SHORT)
+                Toast.makeText(this, "全选", Toast.LENGTH_SHORT)
                         .show();
-                finish();
+                adapter = new MyAdapter(this,cursor);
+                lv.setAdapter(adapter);
+                for (int n = 0; n < adapter.getCount(); n++) {
+                adapter.isSelected.put(n, true);
+
+                }
+
                 break;
             case R.id.action_share:
                 Toast.makeText(this, "上传", Toast.LENGTH_SHORT)
@@ -75,6 +83,7 @@ public class text_display  extends AppCompatActivity{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 cursor.moveToPosition(position);
+
                 Intent i = new Intent(text_display.this, selectAct.class);
                 i.putExtra(NotesDB.ID,
                         cursor.getInt(cursor.getColumnIndex(NotesDB.ID)));
@@ -89,6 +98,7 @@ public class text_display  extends AppCompatActivity{
                 i.putExtra(NotesDB.TIME,
                         cursor.getString(cursor.getColumnIndex(NotesDB.TIME)));
                 startActivity(i);
+
             }
         });
     }

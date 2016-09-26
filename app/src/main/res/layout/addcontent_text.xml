@@ -10,21 +10,21 @@
         android:layout_height="wrap_content"
         android:id="@+id/title_text"
         android:hint="标题"
-        android:layout_weight="1"
-        android:gravity="top"/>
+        android:gravity="top"
+        android:layout_weight="0.06"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/ettext"
             android:hint="内容描述"
-            android:layout_weight="8"
+            android:layout_weight="1.39"
             android:gravity="top"/>
 
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="当前坐标"
-        android:layout_weight="1"/>
+        android:layout_weight="0.73"/>
 
 </LinearLayout>

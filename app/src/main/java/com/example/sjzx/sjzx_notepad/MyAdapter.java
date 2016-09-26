@@ -6,50 +6,40 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+
 
 public class MyAdapter extends BaseAdapter {
 
 
     private Context context;
     private Cursor cursor;
-    private LinearLayout layout;
-    private List<String> selectid = new ArrayList<String>();
-
-
-    private boolean isMulChoice; //是否多选
+    private   CheckBox ceb;
+    private TextView titletv;
+    private LayoutInflater inflater=null;
 
     //记录某一项的checkbox是否可见
-    private HashMap<Integer,Integer> visiblecheck;
+    private static HashMap<Integer,Integer> isVisiblecheck;
     //记录某一项的checkbox是否被选择
-    private HashMap<Integer,Boolean> ischeck;
+    public static HashMap<Integer,Boolean> isSelected;
 
     public MyAdapter(Context context,Cursor cursor) {
         this.context = context;
         this.cursor = cursor;
+        inflater = LayoutInflater.from(context);
 
         //初始化
-        visiblecheck = new HashMap<Integer, Integer>();
+        isVisiblecheck =  new HashMap<Integer, Integer>();
 
-        ischeck = new HashMap<Integer, Boolean>();
+             isSelected = new HashMap<Integer, Boolean>();
 
-        if (isMulChoice) {
-            for (int i = 0; i < cursor.getCount(); i++) {
-                visiblecheck.put(i, View.VISIBLE);
-                ischeck.put(i, false);
+            for (int n = 0; n < cursor.getCount(); n++) {
+
+//             isVisiblecheck.put(i, View.INVISIBLE);
+                isSelected.put(n, false);
             }
-        } else{
-            for (int i = 0; i < cursor.getCount(); i++) {
-                visiblecheck.put(i, View.INVISIBLE);
-                ischeck.put(i, false);
-            }
-        }
-
     }
     @Override
     public int getCount() {
@@ -67,26 +57,33 @@ public class MyAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View view, ViewGroup viewGroup) {
+    public View getView(int position, View convertView, ViewGroup parent) {
 
-        LayoutInflater inflater = LayoutInflater.from(context);
-        layout = (LinearLayout) inflater.inflate(R.layout.cell,null);
+        ViewHolder holder = null;
+                if (convertView == null){
+                    holder = new ViewHolder();
+                    convertView = inflater.inflate(R.layout.cell,null);
+                     holder.titletv = (TextView)convertView.findViewById(R.id.list_title);
+                    holder.ceb = (CheckBox)convertView.findViewById(R.id.delete_cb);
+                    convertView.setTag(holder);
+                }else{
+                    holder = (ViewHolder)convertView.getTag();
+                }
 
-        TextView titletv = (TextView)layout.findViewById(R.id.list_title);
-        CheckBox ceb=(CheckBox)layout.findViewById(R.id.delete_cb);
-
-//        TextView timetv =(TextView)layout.findViewById(R.id.list_time);
         cursor.moveToPosition(position);
         String title = cursor.getString(cursor.getColumnIndex("title"));
 //        String time = cursor.getString(cursor.getColumnIndex("time"));
-        titletv.setText(title);
-
-        ceb.setChecked(ischeck.get(position));
-        ceb.setVisibility(View.INVISIBLE);
-
+        holder.titletv.setText(title);
+        holder.ceb.setChecked(isSelected.get(position));
+//        holder.ceb.setVisibility(View.INVISIBLE);
 //        timetv.setText(time);
-        return layout;
+        return convertView;
     }
+    private final class ViewHolder {
+        TextView titletv;
+        CheckBox ceb;
+    }
+
 
 
 }
