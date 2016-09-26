@@ -10,17 +10,21 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class text_display  extends AppCompatActivity{
+public class text_display  extends AppCompatActivity  implements View.OnClickListener{
     private ListView lv;
     private MyAdapter adapter;
     private NotesDB notesDB;
     private SQLiteDatabase dbReader;
     private Cursor cursor;
-
-
+    private Button selectall;
+    private Button cancel;
+    private Button confirmdelete;
+    private LinearLayout layout1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +37,11 @@ public class text_display  extends AppCompatActivity{
         actionBar.show();
         //结束
         initView();
-
     }
+
+
+
+
     //Actionbar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -52,20 +59,18 @@ public class text_display  extends AppCompatActivity{
                 break;
 
             case R.id.action_delete:
-                Toast.makeText(this, "全选", Toast.LENGTH_SHORT)
-                        .show();
                 adapter = new MyAdapter(this,cursor);
                 lv.setAdapter(adapter);
+
+                layout1.setVisibility(View.VISIBLE);
+                confirmdelete.setVisibility(View.VISIBLE);
                 for (int n = 0; n < adapter.getCount(); n++) {
-                adapter.isSelected.put(n, true);
-
+                    adapter.isVisiblecheck.put(n, View.VISIBLE);
                 }
-
                 break;
             case R.id.action_share:
                 Toast.makeText(this, "上传", Toast.LENGTH_SHORT)
                         .show();
-                finish();
                 break;
             default:
                 break;
@@ -76,8 +81,19 @@ public class text_display  extends AppCompatActivity{
 
     public void initView(){
         lv =(ListView)findViewById(R.id.list_text);
+        selectall = (Button) findViewById(R.id.bt_selectall);
+        cancel = (Button) findViewById(R.id.bt_cancelselectall);
+        confirmdelete = (Button) findViewById(R.id.bt_confirmdelete);
+        layout1 = (LinearLayout)findViewById(R.id.linear);
+
+
         notesDB = new NotesDB(this);
         dbReader = notesDB.getReadableDatabase();
+
+        selectall.setOnClickListener(this);
+        cancel.setOnClickListener(this);
+        confirmdelete.setOnClickListener(this);
+
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -103,10 +119,46 @@ public class text_display  extends AppCompatActivity{
         });
     }
 
+
+      @Override
+    public void onClick(View v){
+        switch (v.getId()){
+            case R.id.bt_selectall:
+
+                adapter = new MyAdapter(this,cursor);
+                lv.setAdapter(adapter);
+
+                for (int n = 0; n < cursor.getCount(); n++) {
+                    adapter.isVisiblecheck.put(n, View.VISIBLE);
+                    adapter.isSelected.put(n, true);
+                }
+
+            case R.id.bt_cancelselectall:
+
+                adapter = new MyAdapter(this,cursor);
+                lv.setAdapter(adapter);
+
+                for (int n = 0; n < cursor.getCount(); n++) {
+                    adapter.isVisiblecheck.put(n, View.VISIBLE);
+                    adapter.isSelected.put(n, false);
+                }
+
+            case R.id.bt_confirmdelete:
+
+                adapter = new MyAdapter(this,cursor);
+                lv.setAdapter(adapter);
+
+                for (int n = 0; n < cursor.getCount(); n++) {
+                    adapter.isVisiblecheck.put(n, View.VISIBLE);
+                    adapter.isSelected.put(n, true);
+                }
+        }
+    }
+
     public void  selectDB(){
          cursor = dbReader.query(NotesDB.TABLE_NAME,null,null,null,null,null,null);
           adapter = new MyAdapter(this,cursor);
-        lv.setAdapter(adapter);
+          lv.setAdapter(adapter);
     }
     @Override
     protected void onResume(){

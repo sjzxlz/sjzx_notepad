@@ -16,12 +16,12 @@ public class MyAdapter extends BaseAdapter {
 
     private Context context;
     private Cursor cursor;
-    private   CheckBox ceb;
+    private    CheckBox ceb;
     private TextView titletv;
     private LayoutInflater inflater=null;
 
     //记录某一项的checkbox是否可见
-    private static HashMap<Integer,Integer> isVisiblecheck;
+    public static HashMap<Integer,Integer> isVisiblecheck;
     //记录某一项的checkbox是否被选择
     public static HashMap<Integer,Boolean> isSelected;
 
@@ -37,7 +37,7 @@ public class MyAdapter extends BaseAdapter {
 
             for (int n = 0; n < cursor.getCount(); n++) {
 
-//             isVisiblecheck.put(i, View.INVISIBLE);
+             isVisiblecheck.put(n, View.GONE);
                 isSelected.put(n, false);
             }
     }
@@ -63,8 +63,8 @@ public class MyAdapter extends BaseAdapter {
                 if (convertView == null){
                     holder = new ViewHolder();
                     convertView = inflater.inflate(R.layout.cell,null);
-                     holder.titletv = (TextView)convertView.findViewById(R.id.list_title);
-                    holder.ceb = (CheckBox)convertView.findViewById(R.id.delete_cb);
+                        titletv = (TextView)convertView.findViewById(R.id.list_title);
+                         ceb = (CheckBox)convertView.findViewById(R.id.delete_cb);
                     convertView.setTag(holder);
                 }else{
                     holder = (ViewHolder)convertView.getTag();
@@ -73,13 +73,13 @@ public class MyAdapter extends BaseAdapter {
         cursor.moveToPosition(position);
         String title = cursor.getString(cursor.getColumnIndex("title"));
 //        String time = cursor.getString(cursor.getColumnIndex("time"));
-        holder.titletv.setText(title);
-        holder.ceb.setChecked(isSelected.get(position));
-//        holder.ceb.setVisibility(View.INVISIBLE);
+         titletv.setText(title);
+        ceb.setChecked(isSelected.get(position));
+        ceb.setVisibility(isVisiblecheck.get(position));
 //        timetv.setText(time);
         return convertView;
     }
-    private final class ViewHolder {
+    private  class ViewHolder {
         TextView titletv;
         CheckBox ceb;
     }
